@@ -13,7 +13,7 @@ public class Main {
         System.out.println("Type up port: ");
         int port_max = in.nextInt();
         System.out.println("Type host: ");
-        String host = in.nextLine();
+        String host = "http://localhost";
 
         Map<Integer, Boolean> open_ports = new HashMap<>();
 
