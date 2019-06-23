@@ -42,6 +42,20 @@ public class PortScanner {
         return  open_ports;
     }
 
+    public boolean scan_single(){
+        boolean state = false;
+        try{
+            Socket socket = new Socket();
+            socket.connect(new InetSocketAddress(this.url.getPath(), this.single_port), this.timeout);
+            socket.close();
+            state = true;
+        } catch(Exception e){
+
+        }
+
+        return state;
+    }
+
 
 
 
