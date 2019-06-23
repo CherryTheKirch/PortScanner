@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
-    public void main(String []args){
+    public static void main(String []args){
         Scanner in = new Scanner(System.in);
         System.out.println("Type down port: ");
         int port_min = in.nextInt();
