@@ -16,11 +16,13 @@ public class PortScanner {
     private int timeout = 1000;
 
     public PortScanner(String url, int port_min, int port_max) throws MalformedURLException {
+        url = correct_url(url);
         this.url = new URL(url);
         populate_ports(port_min, port_max);
     }
 
     public PortScanner(String url, int single_port) throws MalformedURLException {
+        url = correct_url(url);
         this.url = new URL(url);
         this.single_port = single_port;
     }
@@ -66,5 +68,14 @@ public class PortScanner {
         for(int i=0; i < port_range.length; i++){
             port_range[i] = port_min++;
         }
+    }
+
+    // Add protocol to string
+    private String correct_url(String url){
+        String correct_url;
+        String protocol = "http://";
+        correct_url = url.contains(protocol) ? url : protocol.concat(url);
+
+        return correct_url;
     }
 }
