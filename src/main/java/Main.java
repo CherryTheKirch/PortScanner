@@ -7,13 +7,27 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String []args){
-        Scanner in = new Scanner(System.in);
-        System.out.println("Type down port: ");
-        int port_min = in.nextInt();
-        System.out.println("Type up port: ");
-        int port_max = in.nextInt();
-        System.out.println("Type host: ");
-        String host = "http://localhost";
+        if(args.length < 4 || args.length > 5){
+            help();
+        } else if(args.length == 4){
+            start(args[1], args[2], args[3]);
+        } else if(args.length ==5){
+            switch (args[1]){
+                case "-h":
+                    help();
+                case "-s":
+                    start(args[2], args[3], args[4]);
+                 default:
+                     help();
+            }
+        }
+    }
+
+    private static void start(String host_arg, String port_min_arg, String port_max_arg){
+        int port_min = Integer.parseInt(port_min_arg);
+        int port_max = Integer.parseInt(port_max_arg);
+        String host = host_arg;
+
 
         Map<Integer, Boolean> open_ports = new HashMap<>();
 
@@ -28,5 +42,12 @@ public class Main {
             port_status = pair.getValue() ? "open" : "close";
             System.out.println("Port: " + pair.getKey() + " is " + port_status);
         }
+    }
+
+    private static void help(){
+        System.out.println("Welcome to port scanner. Here is the usage:\n" +
+                "GENERAL USAGE: 'program_name -flag host port_min port_max'" +
+                "-h  --help  ->  You see this ;]\n" +
+                "The flag is optional");
     }
 }
